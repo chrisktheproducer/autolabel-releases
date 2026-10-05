@@ -1,4 +1,4 @@
-# AutoLabel
+# BidTag
 
 Automatic label printing for Whatnot live sellers.
 

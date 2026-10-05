@@ -18,8 +18,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           V=$(grep '^version:' latest.yml | awk '{print $2}')
-          gh release create "v$V" --target main --title "AutoLabel $V" --notes-file NOTES.md \
-            "AutoLabel-Setup-$V.exe" "AutoLabel-Setup-$V.exe.blockmap" latest.yml
+          NAME=$(grep '^productName:' meta.txt 2>/dev/null | awk '{print $2}'); NAME=${NAME:-BidTag}
+          gh release create "v$V" --target main --title "$NAME $V" --notes-file NOTES.md \
+            *-Setup-"$V".exe *-Setup-"$V".exe.blockmap latest.yml
       - name: Remove publish branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

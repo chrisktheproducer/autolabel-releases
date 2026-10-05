@@ -1,0 +1,26 @@
+name: Publish release
+# A build gets pushed to the "publish" branch; this turns it into a GitHub Release
+# (which installed copies of AutoLabel check for updates) and then deletes the branch.
+on:
+  push:
+    branches: [publish]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: publish
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          V=$(grep '^version:' latest.yml | awk '{print $2}')
+          gh release create "v$V" --target main --title "AutoLabel $V" --notes-file NOTES.md \
+            "AutoLabel-Setup-$V.exe" "AutoLabel-Setup-$V.exe.blockmap" latest.yml
+      - name: Remove publish branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/publish"

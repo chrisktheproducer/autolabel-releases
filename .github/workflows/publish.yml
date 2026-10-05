@@ -19,8 +19,9 @@ jobs:
         run: |
           V=$(grep '^version:' latest.yml | awk '{print $2}')
           NAME=$(grep '^productName:' meta.txt 2>/dev/null | awk '{print $2}'); NAME=${NAME:-BidTag}
+          cp *-Setup-"$V".exe BidTag-Setup.exe   # fixed name for the website's download link
           gh release create "v$V" --target main --title "$NAME $V" --notes-file NOTES.md \
-            *-Setup-"$V".exe *-Setup-"$V".exe.blockmap latest.yml
+            *-Setup-"$V".exe *-Setup-"$V".exe.blockmap latest.yml BidTag-Setup.exe
       - name: Remove publish branch
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

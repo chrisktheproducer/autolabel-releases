@@ -3,20 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BidTag – automatic buyer labels for live sellers</title>
-<meta name="description" content="BidTag prints a buyer label the second someone wins on your live show. Buyer numbers, custom labels, any thermal printer. 3-day free trial.">
+<title>BidTag – automatic labels for Whatnot, eBay Live &amp; TikTok Shop sellers</title>
+<meta name="description" content="BidTag prints a sorting label the second someone wins on your live show. Rack/item numbers, buyer numbers, pick lists, custom labels, any thermal printer. Free download, 3-day free trial.">
 <meta property="og:title" content="BidTag – Every win. Labeled. Instantly.">
-<meta property="og:description" content="Automatic buyer labels for live sellers. Works with any thermal printer.">
+<meta property="og:description" content="Automatic labels for live sellers on Whatnot, eBay Live and TikTok Shop. Any thermal printer.">
 <meta property="og:url" content="https://bidtag.app">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&amp;family=DM+Sans:wght@400;500;700&amp;family=JetBrains+Mono:wght@500;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&amp;family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;800&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#0E1013}
 a{color:#FFD400}a:hover{color:#FFE45C}
-
+html{scroll-behavior:smooth} summary::marker{color:#FFD400}
+.bt-btn{transition:transform .15s ease, box-shadow .15s ease}.bt-btn:hover{color:#0E1013;transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,212,0,.3)}
+.bt-btn2{transition:border-color .15s ease}.bt-btn2:hover{color:#F3F1EA;border-color:#FFD400}
+.bt-card{transition:transform .25s ease, border-color .25s ease}.bt-card:hover{transform:translateY(-4px);border-color:#4A4320}
+/* hero printer feed: 3 labels, 9s loop */
+@keyframes bt-feed{0%{transform:translate(-50%,-110%);opacity:1}10%{transform:translate(-50%,0);opacity:1}30%{transform:translate(-50%,0)}36%{transform:translate(-50%,190px) rotate(-4deg);opacity:1}62%{transform:translate(-50%,190px) rotate(-4deg);opacity:1}70%{transform:translate(-50%,260px) rotate(-6deg);opacity:0}100%{transform:translate(-50%,260px);opacity:0}}
+.bt-feed{animation:bt-feed 9s infinite both}.bt-f2{animation-delay:3s}.bt-f3{animation-delay:6s}
+@keyframes bt-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.bt-float{animation:bt-float 4s ease-in-out infinite}
+@keyframes bt-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.bt-marquee{animation:bt-marquee 38s linear infinite}
 /* live demo loop: 4 wins over 12s */
 @keyframes bt-b1{0%,2%{opacity:0;transform:translateY(8px)}5%,24%{opacity:1;transform:none}27%,100%{opacity:0}}
 @keyframes bt-b2{0%,27%{opacity:0;transform:translateY(8px)}30%,49%{opacity:1;transform:none}52%,100%{opacity:0}}
@@ -36,183 +45,249 @@ a{color:#FFD400}a:hover{color:#FFE45C}
 .bt-p1{animation:bt-p1 12s infinite}.bt-p2{animation:bt-p2 12s infinite}.bt-p3{animation:bt-p3 12s infinite}.bt-p4{animation:bt-p4 12s infinite}
 .bt-live{animation:bt-pulse 1.4s infinite}
 .bt-row{overflow:hidden}
-@media (prefers-reduced-motion: reduce){.bt-b1,.bt-b2,.bt-b3,.bt-r1,.bt-r2,.bt-r3,.bt-p1,.bt-p2,.bt-p3,.bt-p4,.bt-live{animation:none}.bt-b4,.bt-p4{animation:none}.bt-r1,.bt-r2,.bt-r3,.bt-r4{opacity:1;max-height:none}}
+@media (max-width: 640px){#earn > div{padding:36px 22px !important} header nav a:not(.bt-btn){display:none}}
+@media (prefers-reduced-motion: reduce){.bt-feed,.bt-float,.bt-marquee,.bt-b1,.bt-b2,.bt-b3,.bt-r1,.bt-r2,.bt-r3,.bt-p1,.bt-p2,.bt-p3,.bt-live{animation:none}.bt-f1{opacity:1;transform:translate(-50%,0)}.bt-f2,.bt-f3{display:none}.bt-b4,.bt-p4{animation:none;opacity:1}.bt-r1,.bt-r2,.bt-r3,.bt-r4{animation:none;opacity:1;max-height:none}}
 </style>
-<style>html{scroll-behavior:smooth} summary::marker{color:#FFD400}</style>
+<script>window.lemonSqueezyAffiliateConfig = { store: "dealdepot" };</script>
+<script src="https://lmsqueezy.com/affiliate.js" defer></script>
 </head>
 <body>
 
 <div style="background: #0E1013; color: #F3F1EA; font-family: 'DM Sans', sans-serif; font-size: 17px; line-height: 1.55">
 
-  <!-- NAV -->
-  <header style="border-bottom: 1px solid #23262C">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 18px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px">
-      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3F1EA" aria-label="BidTag home">
-        <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#0E1013"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#0E1013">#</text></svg>
-        <span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -0.5px">BidTag</span>
-      </a>
-      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 6px 24px; flex: 1 1 auto; justify-content: flex-end; align-items: center">
+  <header style="position: sticky; top: 0; z-index: 20; border-bottom: 1px solid #23262C; background: rgba(14,16,19,0.86); backdrop-filter: blur(10px)">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F3F1EA" aria-label="BidTag home"><svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#0E1013"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#0E1013">#</text></svg><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -0.5px">BidTag</span></a>
+      <nav aria-label="Main" style="display: flex; flex-wrap: wrap; gap: 6px 22px; flex: 1 1 auto; justify-content: flex-end; align-items: center; font-size: 15px">
         <a href="#demo" style="color: #C9C6BD; text-decoration: none; font-weight: 500">See it work</a>
-        <a href="#how" style="color: #C9C6BD; text-decoration: none; font-weight: 500">How it works</a>
-        <a href="#features" style="color: #C9C6BD; text-decoration: none; font-weight: 500">Features</a>
+        <a href="#labels" style="color: #C9C6BD; text-decoration: none; font-weight: 500">Labels</a>
+        <a href="#options" style="color: #C9C6BD; text-decoration: none; font-weight: 500">Print options</a>
         <a href="#pricing" style="color: #C9C6BD; text-decoration: none; font-weight: 500">Pricing</a>
+        <a href="#earn" style="color: #C9C6BD; text-decoration: none; font-weight: 500">Earn</a>
         <a href="#faq" style="color: #C9C6BD; text-decoration: none; font-weight: 500">FAQ</a>
-        <a href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; border-radius: 10px; padding: 11px 18px">Download</a>
+        <a class="bt-btn" href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 15px; border-radius: 12px; padding: 11px 18px; display: inline-block">Download</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="top" style="max-width: 1180px; margin: 0 auto; padding: 88px 24px 96px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
-    <div style="flex: 1 1 480px; min-width: 0">
-      <p style="margin: 0 0 18px; display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #FFD400; border: 1px solid #4A4320; background: #1B1A10; border-radius: 999px; padding: 6px 14px">For live sellers · Windows</p>
-      <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(44px, 6vw, 80px); line-height: 0.98; letter-spacing: -2px">Every win.<br>Labeled.<br><span style="color: #FFD400">Instantly.</span></h1>
-      <p style="margin: 26px 0 0; font-size: 20px; color: #C9C6BD; max-width: 520px">BidTag runs next to your live show and prints a buyer label the second someone wins. No more writing names on sticky notes or sorting after the show.</p>
-      <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
-        <a href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px 26px">Download for Windows</a>
-        <a href="https://dealdepot.lemonsqueezy.com" style="color: #F3F1EA; text-decoration: none; font-weight: 700; font-size: 18px; border: 1px solid #3A3E46; border-radius: 12px; padding: 15px 24px">Start free trial</a>
+  <section id="top" style="position: relative; overflow: hidden">
+    <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(60% 60% at 78% 30%, rgba(255,212,0,0.13) 0%, rgba(255,212,0,0) 70%), radial-gradient(40% 50% at 10% 90%, rgba(61,220,132,0.07) 0%, rgba(61,220,132,0) 70%)"></div>
+    <div aria-hidden="true" style="position: absolute; inset: 0; background-image: linear-gradient(#1A1D22 1px, transparent 1px), linear-gradient(90deg, #1A1D22 1px, transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(180deg, rgba(0,0,0,0.6), transparent 85%); -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.6), transparent 85%)"></div>
+    <div style="position: relative; max-width: 1180px; margin: 0 auto; padding: 84px 24px 96px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+      <div style="flex: 1 1 500px; min-width: 0">
+        <p style="margin: 0 0 20px; display: inline-flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; color: #FFD400; border: 1px solid #4A4320; background: #1B1A10; border-radius: 999px; padding: 6px 14px"><span class="bt-live" style="width: 8px; height: 8px; border-radius: 50%; background: #3DDC84; display: inline-block"></span>Whatnot · eBay Live · TikTok Shop</p>
+        <h1 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(48px, 6.6vw, 92px); line-height: 0.95; letter-spacing: -2.5px">Every win.<br>Labeled.<br><span style="color: #FFD400">Instantly.</span></h1>
+        <p style="margin: 26px 0 0; font-size: 20px; color: #C9C6BD; max-width: 540px">BidTag runs next to your live show and prints a sorting label the second someone wins. Rack number, buyer, item and price, on any thermal printer.</p>
+        <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center">
+          <a class="bt-btn" href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px 26px; display: inline-block"><span aria-hidden="true">⬇</span>&nbsp; Download for Windows</a>
+          <a class="bt-btn2" href="#pricing" style="color: #F3F1EA; text-decoration: none; font-weight: 700; font-size: 18px; border: 1px solid #3A3E46; border-radius: 12px; padding: 16px 26px; display: inline-block">See plans</a>
+        </div>
+        <p style="margin: 18px 0 0; font-size: 14px; color: #8E8B83">Free download · 3-day free trial · from $14.99/month</p>
       </div>
-      <p style="margin: 18px 0 0; font-size: 14px; color: #8E8B83">Free download · 3-day free trial · $9.99/month after</p>
-    </div>
 
-    <!-- hero visual: label coming off a printer -->
-    <div style="flex: 1 1 420px; min-width: 0; display: flex; justify-content: center">
-      <div style="position: relative; width: 100%; max-width: 460px">
-        <div style="background: #1A1D22; border: 1px solid #2B2F36; border-radius: 22px; padding: 22px 22px 0">
-          <div style="display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #8E8B83">
-            <span style="display: inline-flex; align-items: center; gap: 8px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; display: inline-block"></span>LIVE · printing</span>
-            <span>2" × 1"</span>
+      <div style="flex: 1 1 440px; min-width: 0; display: flex; justify-content: center">
+        <div style="position: relative; width: 100%; max-width: 460px; height: 470px">
+          <div aria-hidden="true" style="position: absolute; left: 50%; top: 40px; transform: translateX(-50%); width: min(400px, 100%); height: 120px; background: linear-gradient(180deg, #2B2F36, #1C1F24); border: 1px solid #3A3E46; border-radius: 26px 26px 14px 14px; box-shadow: 0 30px 60px rgba(0,0,0,0.5)">
+            <div style="position: absolute; left: 24px; top: 20px; display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #9AA0A6"><span class="bt-live" style="width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; display: inline-block"></span>PRINTING</div>
+            <div style="position: absolute; right: 24px; top: 18px; display: flex; gap: 6px"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#2B2F36"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#2B2F36">#</text></svg></div>
+            <div style="position: absolute; left: 30px; right: 30px; bottom: 22px; height: 12px; background: #07080A; border-radius: 6px"></div>
           </div>
-          <div style="margin: 18px 0 0; height: 14px; background: #0B0C0E; border-radius: 8px 8px 0 0"></div>
-        </div>
-        <div style="margin: -2px auto 0; width: 86%; background: #FFFFFF; color: #111; border-radius: 0 0 10px 10px; padding: 18px 20px; display: flex; gap: 16px; align-items: center; box-shadow: 0 30px 60px rgba(0,0,0,0.45)">
-          <div style="text-align: center; min-width: 108px">
-            <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px; letter-spacing: 2px">BUYER</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 64px; line-height: 1">#12</div>
+          <div style="position: absolute; left: 0; right: 0; top: 142px; height: 330px; overflow: hidden">
+            <div class="bt-feed bt-f1" style="position: absolute; left: 50%; top: 0; transform: translateX(-50%)"><div class="" style="width: 340px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 7px; display: flex; align-items: center; gap: 14px; padding: 11px 16px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 95px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: 2.3px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 59px; line-height: 1; letter-spacing: -1px">#264</div></div>
+  <div style="width: 3.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@jenn529</div><div style="font-size: 14.2px; color: #333; line-height: 1.25">Halara leggings · OS</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 23.8px; margin-top: 2px">$10</div></div>
+</div></div><div class="bt-feed bt-f2" style="position: absolute; left: 50%; top: 0; transform: translateX(-50%)"><div class="" style="width: 340px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 7px; display: flex; align-items: center; gap: 14px; padding: 11px 16px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 95px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: 2.3px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 59px; line-height: 1; letter-spacing: -1px">#5</div></div>
+  <div style="width: 3.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@thriftwithtay</div><div style="font-size: 14.2px; color: #333; line-height: 1.25">Levi's 501 · W30</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 23.8px; margin-top: 2px">$18</div></div>
+</div></div><div class="bt-feed bt-f3" style="position: absolute; left: 50%; top: 0; transform: translateX(-50%)"><div class="" style="width: 340px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 7px; display: flex; align-items: center; gap: 14px; padding: 11px 16px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 95px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 12.5px; letter-spacing: 2.3px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 59px; line-height: 1; letter-spacing: -1px">#88</div></div>
+  <div style="width: 3.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@mike.collects</div><div style="font-size: 14.2px; color: #333; line-height: 1.25">Lululemon Align 25" · 6</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 23.8px; margin-top: 2px">$27</div></div>
+</div></div>
           </div>
-          <div style="width: 3px; align-self: stretch; background: #111"></div>
-          <div style="min-width: 0">
-            <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">@jessica_thrifts</div>
-            <div style="font-size: 14px; color: #333; line-height: 1.3">Vintage Levi's 501 · W30</div>
-            <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 24px; margin-top: 4px">$24</div>
-          </div>
-        </div>
-        <div style="margin: 14px auto 0; width: 80%; background: #F4F4F2; color: #111; border-radius: 10px; padding: 12px 18px; display: flex; gap: 14px; align-items: center; opacity: 0.55">
-          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; min-width: 70px; text-align: center">#7</div>
-          <div style="width: 2px; align-self: stretch; background: #111"></div>
-          <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 15px">@mike.collects · $8</div>
+          <div class="bt-float" style="position: absolute; right: -6px; top: 0; background: #16191D; border: 1px solid #2C3038; border-radius: 12px; padding: 8px 12px; font-size: 13px; box-shadow: 0 10px 30px rgba(0,0,0,0.4)"><b style="color: #FFD400">@jenn529</b> won! · $10</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROOF STRIP -->
-  <section style="border-top: 1px solid #23262C; border-bottom: 1px solid #23262C; background: #121418">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 18px 48px; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #C9C6BD">
-      <span><b style="color: #FFD400">0 sec</b> from win to label</span>
-      <span><b style="color: #FFD400">1 number</b> per buyer, all show</span>
-      <span><b style="color: #FFD400">Any</b> thermal printer</span>
-      <span><b style="color: #FFD400">Auto</b> updates</span>
+  <section aria-label="Works with" style="border-top: 1px solid #23262C; border-bottom: 1px solid #23262C; background: #121418; overflow: hidden">
+    <div class="bt-marquee" style="display: flex; width: max-content; padding: 20px 0; font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #C9C6BD; white-space: nowrap">
+      <div style="display: flex"><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Whatnot<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">eBay Live <i style="color:#8E8B83;font-style:normal">beta</i><span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">TikTok Shop LIVE <i style="color:#8E8B83;font-style:normal">beta</i><span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">2×1 · 2×2 · 4×6 labels<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Rollo<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Munbyn<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Zebra<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">JADENS<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Phomemo<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Any Windows printer<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Auto updates<span style="color: #FFD400">✦</span></span></div><div style="display: flex" aria-hidden="true"><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Whatnot<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">eBay Live <i style="color:#8E8B83;font-style:normal">beta</i><span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">TikTok Shop LIVE <i style="color:#8E8B83;font-style:normal">beta</i><span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">2×1 · 2×2 · 4×6 labels<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Rollo<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Munbyn<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Zebra<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">JADENS<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Phomemo<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Any Windows printer<span style="color: #FFD400">✦</span></span><span style="display: inline-flex; align-items: center; gap: 14px; padding: 0 22px">Auto updates<span style="color: #FFD400">✦</span></span></div>
     </div>
   </section>
 
-
-  <!-- LIVE DEMO -->
-  <section id="demo" style="max-width: 1180px; margin: 0 auto; padding: 104px 24px 24px">
+  <section id="demo" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
     <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Watch it work</p>
-    <h2 style="margin: 10px 0 14px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">Someone wins. A label prints.</h2>
-    <p style="margin: 0 0 40px; color: #B5B2A9; max-width: 640px">This is what happens during your show. Your stream on the left, BidTag on the right. Repeat buyers keep their number, so <b style="color: #F3F1EA">@vintage_vibes22</b> is #1 both times.</p>
+    <h2 style="margin: 10px 0 14px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Someone wins. A label prints.</h2>
+    <p style="margin: 0 0 40px; color: #B5B2A9; max-width: 660px">Your stream on the left, BidTag in the middle, your printer on the right. Each label shows the rack number from your listing, so the item goes straight back to its spot.</p>
     <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch">
       <div style="flex: 1 1 300px; min-width: 0; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 18px">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px; color: #C9C6BD">
-          <span style="font-weight: 700; color: #F3F1EA">Your live show</span>
-          <span style="display: inline-flex; align-items: center; gap: 6px; background: #E5484D; color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 1px; border-radius: 6px; padding: 3px 8px"><span class="bt-live" style="width: 7px; height: 7px; border-radius: 50%; background: #fff; display: inline-block"></span>LIVE</span>
-        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 13px"><span style="font-weight: 700">Your live show</span><span style="display: inline-flex; align-items: center; gap: 6px; background: #E5484D; color: #fff; font-weight: 700; font-size: 11px; letter-spacing: 1px; border-radius: 6px; padding: 3px 8px"><span class="bt-live" style="width: 7px; height: 7px; border-radius: 50%; background: #fff; display: inline-block"></span>LIVE</span></div>
         <div style="position: relative; height: 360px; border-radius: 14px; overflow: hidden; background: radial-gradient(120% 90% at 50% 20%, #2A2F37 0%, #121418 70%)">
           <svg viewBox="0 0 200 200" width="170" height="170" aria-hidden="true" style="position: absolute; left: 50%; top: 34%; transform: translate(-50%,-50%); opacity: 0.5"><circle cx="100" cy="70" r="34" fill="#3A3F48"></circle><path d="M30 190c6-50 36-78 70-78s64 28 70 78z" fill="#3A3F48"></path></svg>
-          <div class="bt-b1" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.86); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
-                <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@vintage_vibes22</span> won!</div>
-                <div style="font-size: 13px; color: #C9C6BD">Nike Air Max 90 · Size 9</div>
-                <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; color: #F3F1EA">$34 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
-              </div><div class="bt-b2" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.86); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
-                <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@thriftwithtay</span> won!</div>
-                <div style="font-size: 13px; color: #C9C6BD">Levi's 501 · W30</div>
-                <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; color: #F3F1EA">$18 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
-              </div><div class="bt-b3" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.86); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
-                <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@mike.collects</span> won!</div>
-                <div style="font-size: 13px; color: #C9C6BD">Lululemon Align 25" · 6</div>
-                <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; color: #F3F1EA">$27 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
-              </div><div class="bt-b4" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.86); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
-                <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@vintage_vibes22</span> won!</div>
-                <div style="font-size: 13px; color: #C9C6BD">Harley tee 1998 · XL</div>
-                <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px; color: #F3F1EA">$22 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
-              </div>
+          <div class="bt-b1" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.88); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
+          <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@vintage_vibes22</span> won!</div>
+          <div style="font-size: 13px; color: #C9C6BD">Nike Air Max 90 · 9 <b style="color:#F3F1EA">#14</b></div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px">$34 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
+        </div><div class="bt-b2" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.88); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
+          <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@thriftwithtay</span> won!</div>
+          <div style="font-size: 13px; color: #C9C6BD">Levi's 501 · W30 <b style="color:#F3F1EA">#5</b></div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px">$18 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
+        </div><div class="bt-b3" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.88); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
+          <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@mike.collects</span> won!</div>
+          <div style="font-size: 13px; color: #C9C6BD">Lululemon Align 25" <b style="color:#F3F1EA">#88</b></div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px">$27 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
+        </div><div class="bt-b4" style="position: absolute; left: 16px; right: 16px; bottom: 16px; opacity: 0; background: rgba(14,16,19,0.88); border: 1px solid #3A3E46; border-radius: 14px; padding: 12px 14px">
+          <div style="font-weight: 700; font-size: 14px"><span style="color: #FFD400">@vintage_vibes22</span> won!</div>
+          <div style="font-size: 13px; color: #C9C6BD">Harley tee 1998 · XL <b style="color:#F3F1EA">#102</b></div>
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 20px">$22 <span style="font-size: 12px; color: #3DDC84; font-family: 'DM Sans', sans-serif; font-weight: 700">SOLD</span></div>
+        </div>
         </div>
       </div>
-
       <div style="flex: 1 1 300px; min-width: 0; background: #14161A; border: 1px solid #262A30; border-radius: 20px; padding: 18px; display: flex; flex-direction: column">
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px">
-          <span style="width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; display: inline-block"></span>
-          <svg width="20" height="20" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#14161A"></circle></svg>
-          <span style="font-family: Archivo, sans-serif; font-weight: 800">BidTag</span>
-          <span style="margin-left: auto; font-size: 12px; color: #9AA0A6">Printer: Thermal 2×1</span>
-        </div>
-        <div style="flex: 1; min-height: 300px">
-          <div class="bt-r4 bt-row" style="opacity: 0; max-height: 0">
-                  <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
-                    <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 34px; text-align: center">#1</div>
-                    <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@vintage_vibes22 · $22</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Harley tee 1998 · XL</div><div style="font-size: 10px; color: #4CD964">printed</div></div>
-                  </div>
-                </div><div class="bt-r3 bt-row" style="opacity: 0; max-height: 0">
-                  <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
-                    <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 34px; text-align: center">#3</div>
-                    <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@mike.collects · $27</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Lululemon Align 25" · 6</div><div style="font-size: 10px; color: #4CD964">printed</div></div>
-                  </div>
-                </div><div class="bt-r2 bt-row" style="opacity: 0; max-height: 0">
-                  <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
-                    <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 34px; text-align: center">#2</div>
-                    <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@thriftwithtay · $18</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Levi's 501 · W30</div><div style="font-size: 10px; color: #4CD964">printed</div></div>
-                  </div>
-                </div><div class="bt-r1 bt-row" style="opacity: 0; max-height: 0">
-                  <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
-                    <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 34px; text-align: center">#1</div>
-                    <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@vintage_vibes22 · $34</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Nike Air Max 90 · Size 9</div><div style="font-size: 10px; color: #4CD964">printed</div></div>
-                  </div>
-                </div>
-        </div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #3DDC84; display: inline-block"></span><svg width="20" height="20" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#14161A"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#14161A">#</text></svg><span style="font-family: Archivo, sans-serif; font-weight: 800">BidTag</span><span style="margin-left: auto; font-size: 12px; color: #9AA0A6">Big number: Item #</span></div>
+        <div style="flex: 1; min-height: 300px"><div class="bt-r4 bt-row" style="opacity: 0; max-height: 0"><div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 44px; text-align: center">#102</div>
+          <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@vintage_vibes22 · $22</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Harley tee 1998 · XL</div><div style="font-size: 10px; color: #3DDC84">printed</div></div>
+        </div></div><div class="bt-r3 bt-row" style="opacity: 0; max-height: 0"><div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 44px; text-align: center">#88</div>
+          <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@mike.collects · $27</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Lululemon Align 25"</div><div style="font-size: 10px; color: #3DDC84">printed</div></div>
+        </div></div><div class="bt-r2 bt-row" style="opacity: 0; max-height: 0"><div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 44px; text-align: center">#5</div>
+          <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@thriftwithtay · $18</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Levi's 501 · W30</div><div style="font-size: 10px; color: #3DDC84">printed</div></div>
+        </div></div><div class="bt-r1 bt-row" style="opacity: 0; max-height: 0"><div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px">
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 44px; text-align: center">#14</div>
+          <div style="flex: 1; min-width: 0"><div style="font-weight: 700; font-size: 13px">@vintage_vibes22 · $34</div><div style="font-size: 11px; color: #9AA0A6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Nike Air Max 90 · 9</div><div style="font-size: 10px; color: #3DDC84">printed</div></div>
+        </div></div></div>
       </div>
-
-      <div style="flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 18px">
+      <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; align-items: center; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 18px">
         <div style="width: 100%; font-size: 13px; font-weight: 700; margin-bottom: 12px">Your label printer</div>
-        <div style="width: 92%; background: #2B2F36; border-radius: 16px 16px 6px 6px; padding: 16px 16px 0">
-          <div style="height: 10px; background: #0B0C0E; border-radius: 6px"></div>
-        </div>
-        <div style="position: relative; width: 84%; height: 260px">
-          <div class="bt-p1" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; background: #FFFFFF; color: #111; border-radius: 0 0 8px 8px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; box-shadow: 0 18px 30px rgba(0,0,0,0.45)">
-                  <div style="text-align: center; min-width: 64px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9px; letter-spacing: 1.5px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; line-height: 1">#1</div></div>
-                  <div style="width: 2px; align-self: stretch; background: #111"></div>
-                  <div style="min-width: 0"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px">@vintage_vibes22</div><div style="font-size: 11px; color: #333; line-height: 1.25">Nike Air Max 90 · Size 9</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15px">$34</div></div>
-                </div><div class="bt-p2" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; background: #FFFFFF; color: #111; border-radius: 0 0 8px 8px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; box-shadow: 0 18px 30px rgba(0,0,0,0.45)">
-                  <div style="text-align: center; min-width: 64px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9px; letter-spacing: 1.5px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; line-height: 1">#2</div></div>
-                  <div style="width: 2px; align-self: stretch; background: #111"></div>
-                  <div style="min-width: 0"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px">@thriftwithtay</div><div style="font-size: 11px; color: #333; line-height: 1.25">Levi's 501 · W30</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15px">$18</div></div>
-                </div><div class="bt-p3" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; background: #FFFFFF; color: #111; border-radius: 0 0 8px 8px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; box-shadow: 0 18px 30px rgba(0,0,0,0.45)">
-                  <div style="text-align: center; min-width: 64px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9px; letter-spacing: 1.5px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; line-height: 1">#3</div></div>
-                  <div style="width: 2px; align-self: stretch; background: #111"></div>
-                  <div style="min-width: 0"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px">@mike.collects</div><div style="font-size: 11px; color: #333; line-height: 1.25">Lululemon Align 25" · 6</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15px">$27</div></div>
-                </div><div class="bt-p4" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; background: #FFFFFF; color: #111; border-radius: 0 0 8px 8px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; box-shadow: 0 18px 30px rgba(0,0,0,0.45)">
-                  <div style="text-align: center; min-width: 64px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9px; letter-spacing: 1.5px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 34px; line-height: 1">#1</div></div>
-                  <div style="width: 2px; align-self: stretch; background: #111"></div>
-                  <div style="min-width: 0"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13px">@vintage_vibes22</div><div style="font-size: 11px; color: #333; line-height: 1.25">Harley tee 1998 · XL</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15px">$22</div></div>
-                </div>
-        </div>
+        <div style="width: 92%; background: #2B2F36; border-radius: 16px 16px 6px 6px; padding: 16px 16px 0"><div style="height: 10px; background: #0B0C0E; border-radius: 6px"></div></div>
+        <div style="position: relative; width: 100%; height: 260px"><div class="bt-p1" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; display: flex; justify-content: center"><div class="" style="width: 250px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 70px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9.2px; letter-spacing: 1.7px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 43px; line-height: 1; letter-spacing: -1px">#14</div></div>
+  <div style="width: 2.5px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 14.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@vintage_vibes22</div><div style="font-size: 10.4px; color: #333; line-height: 1.25">Nike Air Max 90 · 9</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 17.5px; margin-top: 2px">$34</div></div>
+</div></div><div class="bt-p2" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; display: flex; justify-content: center"><div class="" style="width: 250px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 70px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9.2px; letter-spacing: 1.7px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 43px; line-height: 1; letter-spacing: -1px">#5</div></div>
+  <div style="width: 2.5px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 14.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@thriftwithtay</div><div style="font-size: 10.4px; color: #333; line-height: 1.25">Levi's 501 · W30</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 17.5px; margin-top: 2px">$18</div></div>
+</div></div><div class="bt-p3" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; display: flex; justify-content: center"><div class="" style="width: 250px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 70px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9.2px; letter-spacing: 1.7px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 43px; line-height: 1; letter-spacing: -1px">#88</div></div>
+  <div style="width: 2.5px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 14.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@mike.collects</div><div style="font-size: 10.4px; color: #333; line-height: 1.25">Lululemon Align 25"</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 17.5px; margin-top: 2px">$27</div></div>
+</div></div><div class="bt-p4" style="position: absolute; left: 0; right: 0; top: 0; opacity: 0; display: flex; justify-content: center"><div class="" style="width: 250px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 12px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 70px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 9.2px; letter-spacing: 1.7px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 43px; line-height: 1; letter-spacing: -1px">#102</div></div>
+  <div style="width: 2.5px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 14.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@vintage_vibes22</div><div style="font-size: 10.4px; color: #333; line-height: 1.25">Harley tee 1998 · XL</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 17.5px; margin-top: 2px">$22</div></div>
+</div></div></div>
       </div>
     </div>
     <p style="margin: 16px 0 0; font-size: 13px; color: #8E8B83">Sample buyers and items shown.</p>
   </section>
 
+  <section id="labels" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; justify-content: space-between; margin-bottom: 44px">
+      <div style="max-width: 640px"><p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Label examples</p><h2 style="margin: 10px 0 0px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Labels that do the sorting for you.</h2></div>
+      <p style="margin: 0; color: #B5B2A9; max-width: 380px">Pick the number that matches how you pack. Change it any time from the side panel.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 20px">
+      <figure class="bt-card" style="margin: 0; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px 20px 22px; display: flex; flex-direction: column; align-items: center">
+        <div style="transform: rotate(-2deg)"><div class="" style="width: 240px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 11px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 67px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 8.8px; letter-spacing: 1.6px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 42px; line-height: 1; letter-spacing: -1px">#264</div></div>
+  <div style="width: 2.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@jenn529</div><div style="font-size: 10.0px; color: #333; line-height: 1.25">Halara leggings · OS</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 16.8px; margin-top: 2px">$10</div></div>
+</div></div>
+        <figcaption style="margin-top: 28px; width: 100%"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Item / rack number</div><div style="color: #B5B2A9; font-size: 15px; margin-top: 4px">Pulled from the #264 in your listing title. Item goes back to rack 264.</div></figcaption>
+      </figure><figure class="bt-card" style="margin: 0; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px 20px 22px; display: flex; flex-direction: column; align-items: center">
+        <div style="transform: rotate(1.5deg)"><div class="" style="width: 240px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 11px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 67px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 8.8px; letter-spacing: 1.6px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 42px; line-height: 1; letter-spacing: -1px">#12</div></div>
+  <div style="width: 2.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@jessica_thrifts</div><div style="font-size: 10.0px; color: #333; line-height: 1.25">Vintage Levi's 501</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 16.8px; margin-top: 2px">$24</div></div>
+</div></div>
+        <figcaption style="margin-top: 28px; width: 100%"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Buyer number</div><div style="color: #B5B2A9; font-size: 15px; margin-top: 4px">One number per buyer for the whole show. All their items land in bin 12.</div></figcaption>
+      </figure><figure class="bt-card" style="margin: 0; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px 20px 22px; display: flex; flex-direction: column; align-items: center">
+        <div style="transform: rotate(-1deg)"><div style="width: 240px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; padding: 8px 11px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.6px solid #111; padding-bottom: 3px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 14.4px">@jenn529</span><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 10.4px">B#1</span></div>
+  <div style="flex: 1; display: flex; align-items: center; font-family: Archivo, sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -0.5px">#1, 5, 10, 264</div>
+  <div style="font-size: 9.6px; font-weight: 700">4 items · $46</div>
+</div></div>
+        <figcaption style="margin-top: 28px; width: 100%"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Pick list</div><div style="color: #B5B2A9; font-size: 15px; margin-top: 4px">After the show, one label per buyer with every item number they won.</div></figcaption>
+      </figure><figure class="bt-card" style="margin: 0; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px 20px 22px; display: flex; flex-direction: column; align-items: center">
+        <div style="transform: rotate(2deg)"><div class="" style="width: 240px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; display: flex; align-items: center; gap: 10px; padding: 8px 11px; box-sizing: border-box; box-shadow: 0 18px 40px rgba(0,0,0,0.45); ">
+  <div style="text-align: center; min-width: 67px"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 8.8px; letter-spacing: 1.6px">SALE</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 42px; line-height: 1; letter-spacing: -1px">#37</div></div>
+  <div style="width: 2.4px; align-self: stretch; background: #111"></div>
+  <div style="min-width: 0; flex: 1"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 13.6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">@zed.finds</div><div style="font-size: 10.0px; color: #333; line-height: 1.25">Mystery bundle</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 16.8px; margin-top: 2px">GIVEAWAY</div></div>
+</div></div>
+        <figcaption style="margin-top: 28px; width: 100%"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Sale order + giveaways</div><div style="color: #B5B2A9; font-size: 15px; margin-top: 4px">Numbers in the order things sell. Giveaways print too, or skip them.</div></figcaption>
+      </figure>
+    </div>
+    <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 20px">
+      <div class="bt-card" style="flex: 1 1 520px; min-width: 0; background: linear-gradient(135deg, #1F1E12, #16191D 60%); border: 1px solid #4A4320; border-radius: 20px; padding: 36px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center">
+        <div style="flex: 1 1 240px; min-width: 0">
+          <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 30px; line-height: 1.1">Your label, your brand.</div>
+          <p style="color: #C9C6BD; margin: 12px 0 18px">Drag things around, resize text, add your logo, the date or how many items they've bought. 2×1, 2×2, 4×6 or any custom size.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{item}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{user}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{price}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{date}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{count}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">{items}</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">+ logo</span></div>
+        </div>
+        <div style="flex: 0 0 auto; transform: rotate(3deg)"><div style="width: 220px; aspect-ratio: 4 / 6; background: #FFFFFF; color: #111; border-radius: 8px; padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: 0 24px 50px rgba(0,0,0,0.5); ">
+  <div style="display: flex; align-items: center; gap: 8px; border-bottom: 3px solid #111; padding-bottom: 8px"><svg width="25" height="25" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#111"></path><circle cx="15" cy="32" r="4" fill="#FFFFFF"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#FFFFFF">#</text></svg><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 14px; letter-spacing: 1px">YOUR SHOP</span></div>
+  <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 11px; letter-spacing: 2px; margin-top: 11px">ITEM</div>
+  <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 92px; line-height: .9; letter-spacing: -3px">#42</div>
+  <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 18px; margin-top: 10px">@sneakerqueen</div>
+  <div style="font-size: 12px; color: #333">Jordan 4 Retro · 8.5</div>
+  <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 25px; margin-top: 4px">$31</div>
+  <div style="margin-top: auto; height: 25px; background: repeating-linear-gradient(90deg, #111 0 2px, transparent 2px 4px, #111 4px 5px, transparent 5px 8px, #111 8px 11px, transparent 11px 13px)"></div>
+  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; margin-top: 4px">OCT 12 · 8:41 PM · 3rd item</div>
+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="options" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
+    <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Print options</p>
+    <h2 style="margin: 10px 0 44px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Print what you want, when you want.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px">
+      <div class="bt-card" style="background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFD400; letter-spacing: 1px">01 · WHAT NUMBER</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px; margin: 10px 0 16px">The big number on the label</div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <div style="display: flex; align-items: center; gap: 12px; background: #1F1E12; border: 1px solid #FFD400; border-radius: 12px; padding: 12px 14px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 22px; color: #FFD400; min-width: 56px">#264</span><div><div style="font-weight: 700">Item / rack #</div><div style="font-size: 13px; color: #9AA0A6">From the # in your listing title</div></div></div>
+          <div style="display: flex; align-items: center; gap: 12px; border: 1px solid #2C3038; border-radius: 12px; padding: 12px 14px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 22px; min-width: 56px">#12</span><div><div style="font-weight: 700">Buyer #</div><div style="font-size: 13px; color: #9AA0A6">Same number all show per buyer</div></div></div>
+          <div style="display: flex; align-items: center; gap: 12px; border: 1px solid #2C3038; border-radius: 12px; padding: 12px 14px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 22px; min-width: 56px">#37</span><div><div style="font-weight: 700">Sale order</div><div style="font-size: 13px; color: #9AA0A6">1, 2, 3… as things sell</div></div></div>
+        </div>
+      </div>
+      <div class="bt-card" style="background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFD400; letter-spacing: 1px">02 · WHEN IT PRINTS</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px; margin: 10px 0 6px">During the show</div>
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #262A30"><div style="flex: 1"><div style="font-weight: 700">Every auction win</div><div style="font-size: 14px; color: #9AA0A6">Prints the second the sale lands. Never doubles.</div></div><span style="position: relative; display: inline-block; width: 38px; height: 22px; border-radius: 999px; background: #FFD400; flex: none"><span style="position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #0E1013"></span></span></div>
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #262A30"><div style="flex: 1"><div style="font-weight: 700">Buy-it-now sales</div><div style="font-size: 14px; color: #9AA0A6">Instant purchases print too.</div></div><span style="position: relative; display: inline-block; width: 38px; height: 22px; border-radius: 999px; background: #FFD400; flex: none"><span style="position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #0E1013"></span></span></div>
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #262A30"><div style="flex: 1"><div style="font-weight: 700">Giveaways</div><div style="font-size: 14px; color: #9AA0A6">Print a label for winners, or skip them.</div></div><span style="position: relative; display: inline-block; width: 38px; height: 22px; border-radius: 999px; background: #FFD400; flex: none"><span style="position: absolute; top: 3px; right: 3px; width: 16px; height: 16px; border-radius: 50%; background: #0E1013"></span></span></div>
+        <div style="display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-top: 1px solid #262A30"><div style="flex: 1"><div style="font-weight: 700">Pause</div><div style="font-size: 14px; color: #9AA0A6">Stop printing without closing the app.</div></div><span style="position: relative; display: inline-block; width: 38px; height: 22px; border-radius: 999px; background: #3A3E46; flex: none"><span style="position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #0E1013"></span></span></div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid #262A30"><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">Reprint any label</span><span style="display: inline-flex; align-items: center; gap: 6px; border: 1px solid #3A3E46; color: #C9C6BD; font-weight: 600; font-size: 13px; border-radius: 999px; padding: 5px 12px">Print a missed win</span></div>
+      </div>
+      <div class="bt-card" style="background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 30px; display: flex; flex-direction: column">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #FFD400; letter-spacing: 1px">03 · AFTER THE SHOW</div>
+        <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px; margin: 10px 0 6px">Pick lists</div>
+        <p style="margin: 0 0 22px; color: #B5B2A9">One click prints a label for each buyer listing everything they won. Walk the racks, pull the items, pack.</p>
+        <div style="margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 0">
+          <div style="width: 260px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; padding: 9px 12px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(0,0,0,0.45); transform: rotate(-2deg)">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.7px solid #111; padding-bottom: 3px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15.6px">@jenn529</span><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 11.3px">B#1</span></div>
+  <div style="flex: 1; display: flex; align-items: center; font-family: Archivo, sans-serif; font-weight: 900; font-size: 26px; letter-spacing: -0.5px">#1, 5, 10, 264</div>
+  <div style="font-size: 10.4px; font-weight: 700">4 items · $46</div>
+</div>
+          <div style="width: 260px; aspect-ratio: 2 / 1; background: #FFFFFF; color: #111; border-radius: 5px; padding: 9px 12px; box-sizing: border-box; display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(0,0,0,0.45); transform: rotate(1.5deg); margin-top: -18px; opacity: .92">
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1.7px solid #111; padding-bottom: 3px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 15.6px">@mike.collects</span><span style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 11.3px">B#3</span></div>
+  <div style="flex: 1; display: flex; align-items: center; font-family: Archivo, sans-serif; font-weight: 900; font-size: 26px; letter-spacing: -0.5px">#88, 140</div>
+  <div style="font-size: 10.4px; font-weight: 700">2 items · $41</div>
+</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- APP SCREENSHOTS -->
-  <section id="inside" style="max-width: 1180px; margin: 0 auto; padding: 96px 24px 24px">
+  <section id="inside" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
     <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Inside the app</p>
     <h2 style="margin: 10px 0 40px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">Everything on one screen.</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 24px">
@@ -226,16 +301,16 @@ a{color:#FFD400}a:hover{color:#FFE45C}
               <div style="background: #1E2127; border-radius: 8px; padding: 10px; text-align: center"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 22px">41</div><div style="font-size: 11px; color: #9AA0A6">items</div></div>
               <div style="background: #1E2127; border-radius: 8px; padding: 10px; text-align: center"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 22px">$826</div><div style="font-size: 11px; color: #9AA0A6">sales</div></div>
             </div>
-            <div style="display: flex; gap: 8px; margin-top: 10px"><div style="flex: 1; background: #1E2127; border: 1px solid #2C3038; border-radius: 6px; padding: 7px 9px; color: #C9C6BD">Printer: Thermal 2×1</div><div style="background: #FFD400; color: #111; font-weight: 700; border-radius: 6px; padding: 7px 12px">New show</div></div>
+            <div style="display: flex; gap: 8px; margin-top: 10px"><div style="flex: 1; background: #1E2127; border: 1px solid #2C3038; border-radius: 6px; padding: 7px 9px; color: #C9C6BD">Selling on: Whatnot ▾</div><div style="background: #FFD400; color: #111; font-weight: 700; border-radius: 6px; padding: 7px 12px">New show</div></div>
             <div style="margin-top: 8px">
-              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#23</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@denimdaddy · $15</div><div style="font-size: 11px; color: #9AA0A6">Wrangler jacket · M</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
-              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#4</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@sneakerqueen · $31</div><div style="font-size: 11px; color: #9AA0A6">Jordan 4 Retro · 8.5</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
-              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#22</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@thriftwithtay · Giveaway</div><div style="font-size: 11px; color: #9AA0A6">Mystery bundle</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
-              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#1</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@vintage_vibes22 · $22</div><div style="font-size: 11px; color: #9AA0A6">Harley tee 1998 · XL</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#151</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@denimdaddy · $15</div><div style="font-size: 11px; color: #9AA0A6">Wrangler jacket · M</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#42</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@sneakerqueen · $31</div><div style="font-size: 11px; color: #9AA0A6">Jordan 4 Retro · 8.5</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#37</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@thriftwithtay · Giveaway</div><div style="font-size: 11px; color: #9AA0A6">Mystery bundle</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
+              <div style="display: flex; align-items: center; gap: 10px; background: #1E2127; border-radius: 8px; padding: 8px 10px; margin-top: 6px"><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 18px; color: #FFD400; min-width: 38px; text-align: center">#102</div><div style="flex: 1; min-width: 0"><div style="font-weight: 700">@vintage_vibes22 · $22</div><div style="font-size: 11px; color: #9AA0A6">Harley tee 1998 · XL</div></div><span style="font-size: 11px; border: 1px solid #2C3038; border-radius: 5px; padding: 3px 7px">Reprint</span></div>
             </div>
           </div>
         </div>
-        <figcaption style="margin-top: 14px; color: #B5B2A9"><b style="color: #F3F1EA">The live panel.</b> Running totals, every win as it prints, one-click reprint.</figcaption>
+        <figcaption style="margin-top: 14px; color: #B5B2A9"><b style="color: #F3F1EA">The live panel.</b> Pick your platform, see running totals and every win as it prints. Reprint in one click.</figcaption>
       </figure>
 
       <figure style="margin: 0; flex: 1 1 420px; min-width: 0">
@@ -244,7 +319,7 @@ a{color:#FFD400}a:hover{color:#FFE45C}
           <div style="display: flex; flex-wrap: wrap">
             <div style="flex: 1 1 260px; min-width: 0; background: #0D0F12; padding: 36px 20px; display: flex; align-items: center; justify-content: center">
               <div style="position: relative; width: 100%; max-width: 300px; aspect-ratio: 2 / 1; background: #fff; color: #111; outline: 1px solid #444">
-                <div style="position: absolute; left: 4%; top: 10%; width: 32%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 1.5px">BUYER</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 44px; line-height: 1">#4</div></div>
+                <div style="position: absolute; left: 4%; top: 10%; width: 32%; height: 80%; display: flex; flex-direction: column; align-items: center; justify-content: center"><div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 10px; letter-spacing: 1.5px">ITEM</div><div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 44px; line-height: 1">#42</div></div>
                 <div style="position: absolute; left: 38%; top: 10%; width: 2px; height: 80%; background: #111"></div>
                 <div style="position: absolute; left: 42%; top: 10%; width: 54%; outline: 2px solid #4AA3FF; padding: 2px 3px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 14px">@sneakerqueen</div>
                 <div style="position: absolute; left: 42%; top: 40%; width: 54%; font-size: 11px; line-height: 1.2">Jordan 4 Retro · 8.5</div>
@@ -268,137 +343,92 @@ a{color:#FFD400}a:hover{color:#FFE45C}
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section id="how" style="max-width: 1180px; margin: 0 auto; padding: 104px 24px 40px">
+  <section id="how" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
     <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">How it works</p>
-    <h2 style="margin: 10px 0 48px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">Set up once. Sell. Pack.</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
-      <div style="background: #16191D; border: 1px solid #262A30; border-radius: 18px; padding: 30px">
-        <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 46px; color: #FFD400; line-height: 1">01</div>
-        <h3 style="margin: 16px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px">Open BidTag</h3>
-        <p style="margin: 0; color: #B5B2A9">Download it, paste your license key, log in to your selling account and pick your label printer. Takes about two minutes.</p>
-      </div>
-      <div style="background: #16191D; border: 1px solid #262A30; border-radius: 18px; padding: 30px">
-        <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 46px; color: #FFD400; line-height: 1">02</div>
-        <h3 style="margin: 16px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px">Go live like normal</h3>
-        <p style="margin: 0; color: #B5B2A9">Run your show from your phone. Every auction win and giveaway prints a label with the buyer's number, name, item and price.</p>
-      </div>
-      <div style="background: #16191D; border: 1px solid #262A30; border-radius: 18px; padding: 30px">
-        <div style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 46px; color: #FFD400; line-height: 1">03</div>
-        <h3 style="margin: 16px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px">Pack by number</h3>
-        <p style="margin: 0; color: #B5B2A9">Labels show your rack number from the listing, or one number per buyer. Print a pick list for each buyer at the end. Your packing is done when your show is.</p>
-      </div>
+    <h2 style="margin: 10px 0 44px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Set up once. Sell. Pack.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; counter-reset: s">
+      <div class="bt-card" style="position: relative; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 32px; overflow: hidden"><div aria-hidden="true" style="position: absolute; right: -10px; top: -26px; font-family: Archivo, sans-serif; font-weight: 900; font-size: 150px; color: #1E2127; line-height: 1">1</div><div style="position: relative"><div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #FFD400">STEP 01</div><h3 style="margin: 12px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px">Download &amp; sign in</h3><p style="margin: 0; color: #B5B2A9">Install BidTag, paste your license key, choose Whatnot, eBay or TikTok and log in. Pick your printer. About two minutes.</p></div></div><div class="bt-card" style="position: relative; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 32px; overflow: hidden"><div aria-hidden="true" style="position: absolute; right: -10px; top: -26px; font-family: Archivo, sans-serif; font-weight: 900; font-size: 150px; color: #1E2127; line-height: 1">2</div><div style="position: relative"><div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #FFD400">STEP 02</div><h3 style="margin: 12px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px">Go live like normal</h3><p style="margin: 0; color: #B5B2A9">Run your show from your phone. Every win prints a label with the number you chose, the buyer, item and price.</p></div></div><div class="bt-card" style="position: relative; background: #16191D; border: 1px solid #262A30; border-radius: 20px; padding: 32px; overflow: hidden"><div aria-hidden="true" style="position: absolute; right: -10px; top: -26px; font-family: Archivo, sans-serif; font-weight: 900; font-size: 150px; color: #1E2127; line-height: 1">3</div><div style="position: relative"><div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #FFD400">STEP 03</div><h3 style="margin: 12px 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 24px">Pull, pack, ship</h3><p style="margin: 0; color: #B5B2A9">Items go back to their rack or bin by number. Print pick lists at the end and pack each buyer in one pass.</p></div></div>
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section id="features" style="max-width: 1180px; margin: 0 auto; padding: 80px 24px 40px">
+  <section id="features" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
     <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Features</p>
-    <h2 style="margin: 10px 0 48px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">Built for the chaos of a live show.</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #262A30; border: 1px solid #262A30; border-radius: 18px; overflow: hidden">
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Instant labels</h3>
-        <p style="margin: 0; color: #B5B2A9">Prints the moment a buyer wins. Each sale prints once, never doubles.</p>
-      </div>
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Buyer numbers</h3>
-        <p style="margin: 0; color: #B5B2A9">Repeat buyers keep their number all show, so their items land in the same bin.</p>
-      </div>
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Label designer</h3>
-        <p style="margin: 0; color: #B5B2A9">Drag things around, resize text, add your logo, date or item count. Your label, your way.</p>
-      </div>
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Any thermal printer</h3>
-        <p style="margin: 0; color: #B5B2A9">If your computer can print to it, BidTag can. 2×1, 4×6 and custom sizes.</p>
-      </div>
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Missed one? One click.</h3>
-        <p style="margin: 0; color: #B5B2A9">Reprint any label or print one by hand. Running totals for buyers, items and sales.</p>
-      </div>
-      <div style="background: #0E1013; padding: 30px">
-        <h3 style="margin: 0 0 8px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Always up to date</h3>
-        <p style="margin: 0; color: #B5B2A9">Updates install themselves between shows. New features and platforms arrive automatically.</p>
-      </div>
+    <h2 style="margin: 10px 0 44px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Built for the chaos of a live show.</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1px; background: #262A30; border: 1px solid #262A30; border-radius: 20px; overflow: hidden">
+      <div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Instant labels</h3><p style="margin: 0; color: #B5B2A9">Prints the moment a buyer wins. Each sale prints once, never doubles.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Your numbering</h3><p style="margin: 0; color: #B5B2A9">Rack/item #, buyer # or sale order. Switch any time.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Pick lists</h3><p style="margin: 0; color: #B5B2A9">One label per buyer with all their item numbers, in one click.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Label designer</h3><p style="margin: 0; color: #B5B2A9">Drag, resize, add your logo, date and item count.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Any thermal printer</h3><p style="margin: 0; color: #B5B2A9">If Windows can print to it, BidTag can. 2×1 to 4×6.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1"/><path d="M5 13v8h14v-8M12 8v13"/><path d="M12 8c-2-4-6-4-6-1.5S10 8 12 8zM12 8c2-4 6-4 6-1.5S14 8 12 8z"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Giveaways</h3><p style="margin: 0; color: #B5B2A9">Print giveaway winners too, or skip them with one switch.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Missed one? One click.</h3><p style="margin: 0; color: #B5B2A9">Reprint any label or print one by hand. Live totals all show.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="10" rx="1.5"/><path d="M6 18h6"/><rect x="17" y="8" width="5" height="11" rx="1"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Multi-platform</h3><p style="margin: 0; color: #B5B2A9">Whatnot today, eBay Live and TikTok Shop LIVE in beta.</p></div><div style="background: #0E1013; padding: 30px"><div style="width: 46px; height: 46px; border-radius: 12px; background: #1F1E12; border: 1px solid #4A4320; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFD400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18h10a4 4 0 0 0 .5-8A6 6 0 0 0 6 9.5 4.3 4.3 0 0 0 7 18z"/><path d="M12 11v5M10 14l2 2 2-2"/></svg></div><h3 style="margin: 18px 0 6px; font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">Updates itself</h3><p style="margin: 0; color: #B5B2A9">New features install between shows. Nothing to download again.</p></div>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" style="max-width: 1180px; margin: 0 auto; padding: 104px 24px 40px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-    <div style="flex: 1 1 380px; min-width: 0">
+  <section id="pricing" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
+    <div style="text-align: center; max-width: 700px; margin: 0 auto 48px">
       <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #FFD400">Pricing</p>
-      <h2 style="margin: 10px 0 18px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">One plan. Everything in it.</h2>
-      <p style="margin: 0; color: #B5B2A9; font-size: 19px; max-width: 460px">Less than one sale a month. Try it free on your next show, and keep it only if it saves you time.</p>
+      <h2 style="margin: 10px 0 12px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Less than one sale a month.</h2>
+      <p style="margin: 0; color: #B5B2A9; font-size: 19px">Download free, try it on your next show, keep it only if it saves you time. Every feature is in both plans.</p>
     </div>
-    <div style="flex: 1 1 380px; min-width: 0; background: #FFD400; color: #0E1013; border-radius: 24px; padding: 40px">
-      <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 20px">BidTag</div>
-      <div style="display: flex; align-items: baseline; gap: 6px; margin: 10px 0 6px">
-        <span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 72px; line-height: 1; letter-spacing: -2px">$9.99</span>
-        <span style="font-weight: 700; font-size: 18px">/ month</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; max-width: 900px; margin: 0 auto; align-items: stretch">
+      <div class="bt-card" style="position: relative; flex: 1 1 340px; min-width: 0; background: #16191D; color: #F3F1EA; border: 1px solid #262A30; border-radius: 24px; padding: 36px">
+        
+        <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px">Solo</div>
+        <div style="display: flex; align-items: baseline; gap: 6px; margin: 10px 0 4px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -2px">$14.99</span><span style="font-weight: 700; font-size: 17px">/ month</span></div>
+        <div style="font-weight: 600; color: #9AA0A6">3-day free trial · cancel anytime</div>
+        <ul style="list-style: none; margin: 26px 0 30px; padding: 0; display: flex; flex-direction: column; gap: 10px; font-weight: 500"><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><b>1 computer</b> at a time</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Unlimited labels and shows</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Item #, buyer # or sale-order numbering</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Pick lists</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Label designer with your logo</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Whatnot, eBay Live and TikTok Shop</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Any thermal printer</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#2A2D24"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Automatic updates</span></li></ul>
+        <a href="https://dealdepot.lemonsqueezy.com" style="display: block; text-align: center; background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px">Start free trial</a>
       </div>
-      <div style="font-weight: 700">3-day free trial · cancel anytime</div>
-      <ul style="margin: 26px 0 30px; padding: 0 0 0 20px; font-weight: 500; line-height: 1.9">
-        <li>Unlimited labels and shows</li>
-        <li>Label designer with your logo</li>
-        <li>Works with any thermal printer</li>
-        <li>Automatic updates</li>
-      </ul>
-      <a href="https://dealdepot.lemonsqueezy.com" style="display: block; text-align: center; background: #0E1013; color: #FFD400; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 17px">Start free trial</a>
-      <p style="margin: 14px 0 0; font-size: 14px; text-align: center; font-weight: 500">Needs Windows 10 or 11 and a thermal label printer.</p>
+      <div class="bt-card" style="position: relative; flex: 1 1 340px; min-width: 0; background: #FFD400; color: #0E1013; border: 1px solid #FFD400; border-radius: 24px; padding: 36px">
+        <span style="position: absolute; top: -13px; right: 28px; background: #0E1013; color: #FFD400; border: 1px solid #FFD400; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px; border-radius: 999px; padding: 4px 12px">BEST FOR TEAMS</span>
+        <div style="font-family: Archivo, sans-serif; font-weight: 800; font-size: 22px">Pro</div>
+        <div style="display: flex; align-items: baseline; gap: 6px; margin: 10px 0 4px"><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 64px; line-height: 1; letter-spacing: -2px">$24.99</span><span style="font-weight: 700; font-size: 17px">/ month</span></div>
+        <div style="font-weight: 600; color: #2A2400">3-day free trial · cancel anytime</div>
+        <ul style="list-style: none; margin: 26px 0 30px; padding: 0; display: flex; flex-direction: column; gap: 10px; font-weight: 500"><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span><b>Up to 3 computers</b> at once</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Unlimited labels and shows</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Item #, buyer # or sale-order numbering</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Pick lists</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Label designer with your logo</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Whatnot, eBay Live and TikTok Shop</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Any thermal printer</span></li><li style="display: flex; gap: 10px; align-items: flex-start"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true" style="flex: none; margin-top: 3px"><circle cx="10" cy="10" r="10" fill="#0E1013"></circle><path d="M5.5 10.5l3 3 6-6.5" fill="none" stroke="#FFD400" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Automatic updates</span></li></ul>
+        <a href="https://dealdepot.lemonsqueezy.com" style="display: block; text-align: center; background: #0E1013; color: #FFD400; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px">Start free trial</a>
+      </div>
+    </div>
+    <p style="text-align: center; margin: 22px 0 0; font-size: 14px; color: #8E8B83">Needs Windows 10 or 11 and a thermal label printer. Your key works on a new computer any time: just sign out on the old one.</p>
+  </section>
+
+  <section id="earn" style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 24px">
+    <div style="position: relative; overflow: hidden; background: #FFD400; color: #0E1013; border-radius: 28px; padding: 56px 48px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center">
+      <div aria-hidden="true" style="position: absolute; right: -60px; bottom: -80px; opacity: .12"><svg width="360" height="360" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#0E1013"></path><circle cx="15" cy="32" r="4" fill="#FFD400"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#FFD400">#</text></svg></div>
+      <div style="position: relative; flex: 1 1 460px; min-width: 0">
+        <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 800">Refer &amp; earn</p>
+        <h2 style="margin: 10px 0 14px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(36px, 4.4vw, 58px); line-height: 1; letter-spacing: -1.5px">Get paid every month for every seller you bring.</h2>
+        <p style="margin: 0; font-size: 19px; font-weight: 500; max-width: 560px">Share your link with other live sellers. You earn for as long as they stay subscribed, paid out automatically.</p>
+      </div>
+      <div style="position: relative; flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <div style="background: #0E1013; color: #F3F1EA; border-radius: 18px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 700">Each Solo seller</span><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 30px; color: #FFD400">$5<span style="font-size: 15px; color: #F3F1EA">/mo</span></span></div>
+        <div style="background: #0E1013; color: #F3F1EA; border-radius: 18px; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center"><span style="font-weight: 700">Each Pro seller</span><span style="font-family: Archivo, sans-serif; font-weight: 900; font-size: 30px; color: #FFD400">$10<span style="font-size: 15px; color: #F3F1EA">/mo</span></span></div>
+        <a href="https://dealdepot.lemonsqueezy.com/affiliates" style="margin-top: 6px; text-align: center; background: #0E1013; color: #FFD400; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px">Become a partner</a>
+        <div style="font-size: 13px; font-weight: 600; text-align: center">20 sellers on Pro = $200 every month.</div>
+      </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" style="max-width: 820px; margin: 0 auto; padding: 104px 24px 40px">
-    <h2 style="margin: 0 0 32px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 52px); line-height: 1.05; letter-spacing: -1px">Questions</h2>
+  <section id="faq" style="max-width: 860px; margin: 0 auto; padding: 110px 24px 24px">
+    <h2 style="margin: 10px 0 32px; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -1.2px">Questions</h2>
     <div style="display: flex; flex-direction: column; gap: 12px">
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Which platforms does it work with?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">Whatnot today. More live-selling platforms are on the way, and they'll show up in your app automatically.</p>
-      </details>
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Do I need my computer during the show?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">Yes. Sell from your phone like you always do, and keep BidTag open on a Windows computer that's connected to your printer.</p>
-      </details>
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Does it print shipping labels?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">No. BidTag prints small sorting labels during the show. You still print shipping labels from your platform after, but everything is already sorted by buyer.</p>
-      </details>
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">What printer and labels should I use?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">Any USB thermal label printer works. 2×1 removable labels are the most popular: they peel off clean.</p>
-      </details>
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">How does the free trial work?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">Download BidTag free and open it. Click Get a key to start your 3-day trial, then paste the key from your email. Cancel before the trial ends and you won't be charged.</p>
-      </details>
-      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px">
-        <summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Can I use it on two computers?</summary>
-        <p style="margin: 12px 0 0; color: #B5B2A9">One computer at a time per subscription. Switching computers? Click Sign out in the app and enter your key on the new one.</p>
-      </details>
+      <details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Which platforms does it work with?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Whatnot, plus eBay Live and TikTok Shop LIVE in beta. Pick yours from the "Selling on" menu in the app. New platforms show up through automatic updates.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">What is the "big number" on the label?</summary><p style="margin: 12px 0 0; color: #B5B2A9">You choose: the item/rack number from your listing title (#264 prints as ITEM #264), a buyer number that stays the same all show, or sale order 1, 2, 3. Switch any time.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">What are pick lists?</summary><p style="margin: 12px 0 0; color: #B5B2A9">After the show, one click prints a label for each buyer with every item number they won, like "@jenn529 · #1, 5, 10, 264 · 4 items". Great for pulling from racks.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Do I need my computer during the show?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Yes. Sell from your phone like normal and keep BidTag open on a Windows computer connected to your printer.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">Does it print shipping labels?</summary><p style="margin: 12px 0 0; color: #B5B2A9">No. BidTag prints sorting labels during the show. You still print shipping labels from your platform after, but everything is already sorted.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">What printer and labels should I use?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Any thermal label printer Windows can print to: Rollo, Munbyn, Zebra, JADENS, Phomemo and more. 2×1 removable labels are the most popular.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">How does the free trial work?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Download BidTag free and open it. Click Get a key, pick Solo or Pro and start your 3-day trial, then paste the key from your email. Cancel before it ends and you won't be charged.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">What's the difference between Solo and Pro?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Same features. Solo runs on 1 computer at a time, Pro on up to 3 at once, for teams with more than one packing station.</p></details><details style="background: #16191D; border: 1px solid #262A30; border-radius: 14px; padding: 20px 24px"><summary style="cursor: pointer; font-family: Archivo, sans-serif; font-weight: 800; font-size: 19px">How does the referral program work?</summary><p style="margin: 12px 0 0; color: #B5B2A9">Sign up as a partner and share your link. You earn $5 a month for each Solo seller and $10 a month for each Pro seller you refer, for as long as they stay subscribed.</p></details>
     </div>
   </section>
 
-  <!-- FINAL CTA -->
-  <section style="max-width: 1180px; margin: 0 auto; padding: 96px 24px 104px">
-    <div style="background: #16191D; border: 1px solid #262A30; border-radius: 28px; padding: 64px 32px; text-align: center">
-      <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -1.5px">Your next show,<br><span style="color: #FFD400">already sorted.</span></h2>
-      <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center">
-        <a href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px 26px">Download for Windows</a>
-        <a href="https://dealdepot.lemonsqueezy.com" style="color: #F3F1EA; text-decoration: none; font-weight: 700; font-size: 18px; border: 1px solid #3A3E46; border-radius: 12px; padding: 15px 24px">Start free trial</a>
+  <section style="max-width: 1180px; margin: 0 auto; padding: 110px 24px 110px">
+    <div style="position: relative; overflow: hidden; background: #16191D; border: 1px solid #262A30; border-radius: 28px; padding: 72px 32px; text-align: center">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background: radial-gradient(50% 80% at 50% 0%, rgba(255,212,0,0.14), transparent 70%)"></div>
+      <div style="position: relative">
+        <h2 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 900; font-size: clamp(40px, 5.4vw, 72px); line-height: 0.98; letter-spacing: -2px">Your next show,<br><span style="color: #FFD400">already sorted.</span></h2>
+        <div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center"><a class="bt-btn" href="https://github.com/chrisktheproducer/autolabel-releases/releases/latest/download/BidTag-Setup.exe" style="background: #FFD400; color: #0E1013; text-decoration: none; font-weight: 800; font-size: 18px; border-radius: 12px; padding: 16px 26px; display: inline-block"><span aria-hidden="true">⬇</span>&nbsp; Download for Windows</a><a class="bt-btn2" href="#pricing" style="color: #F3F1EA; text-decoration: none; font-weight: 700; font-size: 18px; border: 1px solid #3A3E46; border-radius: 12px; padding: 16px 26px; display: inline-block">See plans</a></div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer style="border-top: 1px solid #23262C">
-    <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; font-size: 14px; color: #8E8B83">
-      <span>© 2026 Deal Depot LLC · BidTag</span>
+    <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; align-items: center; font-size: 14px; color: #8E8B83">
+      <span style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#0E1013"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#0E1013">#</text></svg> © 2026 Deal Depot LLC · BidTag</span>
       <span style="display: flex; flex-wrap: wrap; gap: 20px">
         <a href="mailto:support@bidtag.app" style="color: #C9C6BD">Support</a>
         <a href="#pricing" style="color: #C9C6BD">Pricing</a>
+        <a href="https://dealdepot.lemonsqueezy.com/affiliates" style="color: #C9C6BD">Partners</a>
       </span>
-      <span style="flex-basis: 100%; font-size: 12px; color: #6F6C65">BidTag is an independent tool and isn't affiliated with or endorsed by any selling platform.</span>
+      <span style="flex-basis: 100%; font-size: 12px; color: #6F6C65">BidTag is an independent tool and isn't affiliated with or endorsed by Whatnot, eBay, TikTok or any printer maker.</span>
     </div>
   </footer>
 </div>

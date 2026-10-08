@@ -421,6 +421,37 @@ html{scroll-behavior:smooth} summary::marker{color:#FFD400}
     </div>
   </section>
 
+  <section id="legal" style="border-top: 1px solid #23262C">
+    <div style="max-width: 860px; margin: 0 auto; padding: 48px 24px; font-family: 'DM Sans', sans-serif; color: #C9C6BD; font-size: 15px; line-height: 1.6">
+      <h2 style="font-family: Archivo, sans-serif; font-weight: 800; color: #F3F1EA; font-size: 26px; margin: 0 0 18px">Legal</h2>
+      <details id="terms" style="border: 1px solid #23262C; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px">
+        <summary style="cursor: pointer; color: #F3F1EA; font-weight: 700">Terms of Service</summary>
+        <p>Last updated October 8, 2026. BidTag is software made by Deal Depot LLC, St. Petersburg, Florida ("we"). By downloading or using BidTag you agree to these terms.</p>
+        <p><b>Subscriptions.</b> BidTag is sold as a monthly subscription (Solo: 1 computer; Pro: up to 3 computers). New subscriptions include a 3-day free trial. After the trial your plan renews every month until you cancel. Payments are processed by our reseller, Lemon Squeezy, which is the merchant of record for all orders and handles billing, taxes and receipts.</p>
+        <p><b>License.</b> While your subscription is active you may use BidTag on the number of computers your plan allows. You may not resell, share license keys, reverse engineer or redistribute the software.</p>
+        <p><b>Cancelling.</b> You can cancel anytime at <a href="https://buy.bidtag.app/billing">buy.bidtag.app/billing</a>. You keep access until the end of the period you paid for.</p>
+        <p><b>Your responsibility.</b> BidTag reads the live-show page you have open and prints labels from it. Always check orders against your selling platform before shipping. BidTag is not affiliated with Whatnot, eBay or TikTok, and changes on those sites can affect detection.</p>
+        <p><b>No warranty.</b> BidTag is provided "as is." To the extent allowed by law we are not liable for lost sales, misprinted labels, shipping errors or other indirect damages, and our total liability is limited to what you paid in the last 3 months.</p>
+        <p><b>Changes.</b> We may update these terms; the date above shows the latest version. Florida law governs. Questions: <a href="mailto:support@bidtag.app">support@bidtag.app</a>.</p>
+      </details>
+      <details id="privacy" style="border: 1px solid #23262C; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px">
+        <summary style="cursor: pointer; color: #F3F1EA; font-weight: 700">Privacy Policy</summary>
+        <p>Last updated October 8, 2026.</p>
+        <p><b>What we collect.</b> When you buy, Lemon Squeezy collects your name, email and payment details to process the order; we receive your name, email, plan and license key. When you activate BidTag, your license key and a device name are checked with Lemon Squeezy to enforce your computer limit.</p>
+        <p><b>What stays on your computer.</b> Show data, buyer usernames, label designs, settings and logs are stored only on your computer. We do not upload your shows or your buyers' information.</p>
+        <p><b>Updates.</b> The app checks GitHub for new versions, which shares your IP address with GitHub like any download.</p>
+        <p><b>Email.</b> We email you about your purchase, license and account. Marketing emails are sent only if you opt in, and every one has an unsubscribe link.</p>
+        <p><b>Sharing.</b> We don't sell your data. We share it only with the services that run BidTag (Lemon Squeezy, GitHub, our email provider) or when required by law.</p>
+        <p><b>Your choices.</b> Email <a href="mailto:support@bidtag.app">support@bidtag.app</a> to see or delete the information we hold about you.</p>
+      </details>
+      <details id="refunds" style="border: 1px solid #23262C; border-radius: 12px; padding: 14px 18px">
+        <summary style="cursor: pointer; color: #F3F1EA; font-weight: 700">Refund Policy</summary>
+        <p>Every plan starts with a 3-day free trial so you can test BidTag on a real show before paying. Cancel during the trial and you won't be charged.</p>
+        <p>If BidTag doesn't work for you after your first payment, email <a href="mailto:support@bidtag.app">support@bidtag.app</a> within 14 days of that charge for a full refund. After that, you can cancel anytime and you won't be charged again, but partial months aren't refunded.</p>
+      </details>
+    </div>
+  </section>
+
   <footer style="border-top: 1px solid #23262C">
     <div style="max-width: 1180px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; justify-content: space-between; align-items: center; font-size: 14px; color: #8E8B83">
       <span style="display: flex; align-items: center; gap: 10px"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><path d="M14 8h36a6 6 0 0 1 6 6v36a6 6 0 0 1-6 6H14L4 32z" fill="#FFD400"></path><circle cx="15" cy="32" r="4" fill="#0E1013"></circle><text x="38" y="42" text-anchor="middle" font-family="Archivo, sans-serif" font-weight="900" font-size="28" fill="#0E1013">#</text></svg> © 2026 Deal Depot LLC · BidTag</span>
@@ -428,11 +459,15 @@ html{scroll-behavior:smooth} summary::marker{color:#FFD400}
         <a href="mailto:support@bidtag.app" style="color: #C9C6BD">Support</a>
         <a href="#pricing" style="color: #C9C6BD">Pricing</a>
         <a href="https://buy.bidtag.app/affiliates" style="color: #C9C6BD">Partners</a>
+        <a href="#terms" style="color: #C9C6BD">Terms</a>
+        <a href="#privacy" style="color: #C9C6BD">Privacy</a>
+        <a href="#refunds" style="color: #C9C6BD">Refunds</a>
       </span>
       <span style="flex-basis: 100%; font-size: 12px; color: #6F6C65">BidTag is an independent tool and isn't affiliated with or endorsed by Whatnot, eBay, TikTok or any printer maker.</span>
     </div>
   </footer>
 </div>
 
+<script>function btOpen(){var e=location.hash&&document.querySelector(location.hash);if(e&&e.tagName==='DETAILS'){e.open=true;e.scrollIntoView();}}addEventListener('hashchange',btOpen);btOpen();</script>
 </body>
 </html>

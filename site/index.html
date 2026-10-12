@@ -531,5 +531,22 @@ document.addEventListener('click',function(e){var a=e.target.closest&&e.target.c
 if(/BidTag-Setup\.exe/.test(a.href))fbq('track','Lead',{content_name:'Download'});
 else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:a.dataset.plan==='pro'?'Pro':'Solo',value:a.dataset.plan==='pro'?24.99:14.99,currency:'USD'});});
 </script>
+<script>
+/* Checkout opens as a Lemon Squeezy overlay on this page once the buttons point at real checkout links
+   (scripts/go-live.sh sets them). Until then they open the store normally. */
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('a[data-plan]')).filter(function(a){return /\/checkout\/buy\//.test(a.href)});
+  if(!btns.length) return;
+  btns.forEach(function(a){a.classList.add('lemonsqueezy-button')});
+  var sc=document.createElement('script'); sc.src='https://app.lemonsqueezy.com/js/lemon.js'; sc.defer=true;
+  sc.onload=function(){
+    if(window.createLemonSqueezy) window.createLemonSqueezy();
+    if(window.LemonSqueezy) window.LemonSqueezy.Setup({eventHandler:function(e){
+      if(e && e.event==='Checkout.Success' && window.fbq) fbq('track','StartTrial',{currency:'USD',value:0});
+    }});
+  };
+  document.body.appendChild(sc);
+})();
+</script>
 </body>
 </html>

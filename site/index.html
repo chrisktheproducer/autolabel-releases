@@ -50,6 +50,23 @@ html{scroll-behavior:smooth} summary::marker{color:#FFD400}
 </style>
 <script>window.lemonSqueezyAffiliateConfig = { store: "dealdepot" };</script>
 <script src="https://lmsqueezy.com/affiliate.js" defer></script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1110105755052704');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1110105755052704&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -473,12 +490,13 @@ html{scroll-behavior:smooth} summary::marker{color:#FFD400}
       </details>
       <details id="privacy" style="border: 1px solid #23262C; border-radius: 12px; padding: 14px 18px; margin-bottom: 12px">
         <summary style="cursor: pointer; color: #F3F1EA; font-weight: 700">Privacy Policy</summary>
-        <p>Last updated October 8, 2026.</p>
+        <p>Last updated October 12, 2026.</p>
         <p><b>What we collect.</b> When you buy, Lemon Squeezy collects your name, email and payment details to process the order; we receive your name, email, plan and license key. When you activate BidTag, your license key and a device name are checked with Lemon Squeezy to enforce your computer limit.</p>
         <p><b>What stays on your computer.</b> Show data, buyer usernames, label designs, settings and logs are stored only on your computer. We do not upload your shows or your buyers' information.</p>
         <p><b>Updates.</b> The app checks GitHub for new versions, which shares your IP address with GitHub like any download.</p>
+        <p><b>Website.</b> bidtag.app uses Cloudflare Web Analytics (no cookies) to count visits, and the Meta Pixel to measure our Facebook and Instagram ads. The pixel lets Meta know you visited and whether you clicked Download or Start free trial. You can limit this in your Facebook ad preferences or with your browser's tracking protection.</p>
         <p><b>Email.</b> We email you about your purchase, license and account. Marketing emails are sent only if you opt in, and every one has an unsubscribe link.</p>
-        <p><b>Sharing.</b> We don't sell your data. We share it only with the services that run BidTag (Lemon Squeezy, GitHub, our email provider) or when required by law.</p>
+        <p><b>Sharing.</b> We don't sell your data. We share it only with the services that run BidTag (Lemon Squeezy, GitHub, Cloudflare, Meta, our email provider) or when required by law.</p>
         <p><b>Your choices.</b> Email <a href="mailto:support@bidtag.app">support@bidtag.app</a> to see or delete the information we hold about you.</p>
       </details>
       <details id="refunds" style="border: 1px solid #23262C; border-radius: 12px; padding: 14px 18px">
@@ -507,5 +525,11 @@ html{scroll-behavior:smooth} summary::marker{color:#FFD400}
 </div>
 
 <script>function btOpen(){var e=location.hash&&document.querySelector(location.hash);if(e&&e.tagName==='DETAILS'){e.open=true;e.scrollIntoView();}}addEventListener('hashchange',btOpen);btOpen();</script>
+<script>
+// Meta Pixel events: download clicks and Start free trial clicks
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||!window.fbq)return;
+if(/BidTag-Setup\.exe/.test(a.href))fbq('track','Lead',{content_name:'Download'});
+else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:a.dataset.plan==='pro'?'Pro':'Solo',value:a.dataset.plan==='pro'?24.99:14.99,currency:'USD'});});
+</script>
 </body>
 </html>

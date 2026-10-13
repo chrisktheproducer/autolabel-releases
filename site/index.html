@@ -61,6 +61,12 @@ body > div{overflow-x:clip}
 .band + .band:not(.band-raised):not(.band-paper):not(.band-yellow){padding-top:110px}
 .eyebrow{display:inline-block;margin:0;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#FFD400;background:rgba(255,212,0,.1);border:1px solid rgba(255,212,0,.35);border-radius:999px;padding:5px 12px}
 .band-paper .eyebrow,.band-yellow .eyebrow{background:#0E1013;border-color:#0E1013;color:#FFD400}
+#bt-co{display:none;position:fixed;inset:0;z-index:100}
+#bt-co.on{display:block}
+#bt-co .bt-co-bg{position:absolute;inset:0;background:rgba(5,6,8,.78);backdrop-filter:blur(4px)}
+#bt-co .bt-co-box{position:relative;margin:4vh auto;width:min(560px,calc(100% - 24px));max-height:92vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(0,0,0,.5);padding:18px 0 8px}
+#bt-co .bt-co-x{position:absolute;top:8px;right:10px;z-index:2;width:36px;height:36px;border:0;border-radius:50%;background:#0E1013;color:#FFD400;font-size:22px;line-height:1;cursor:pointer}
+#bt-co .bt-co-load{padding:60px 20px;text-align:center;color:#555;font:600 16px 'DM Sans',sans-serif}
 .faq-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:12px;align-items:start}
 
 @media (max-width: 640px){header nav a:not(.bt-btn):not(.bt-signin){display:none}}
@@ -530,10 +536,34 @@ if(/BidTag-Setup\.exe/.test(a.href))fbq('track','Lead',{content_name:'Download'}
 else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:a.dataset.plan==='pro'?'Pro':'Solo',value:a.dataset.plan==='pro'?24.99:14.99,currency:'USD'});});
 </script>
 <script>
-/* Pass a referral code (?ref=name) from the page URL through to Stripe checkout. */
-(function(){var r=new URLSearchParams(location.search).get('ref');if(!r)return;try{localStorage.setItem('bt_ref',r)}catch(e){}})();
-(function(){var r=null;try{r=new URLSearchParams(location.search).get('ref')||localStorage.getItem('bt_ref')}catch(e){}if(!r)return;
-[].forEach.call(document.querySelectorAll('a[data-plan]'),function(a){a.href+=(a.href.indexOf('?')<0?'?':'&')+'ref='+encodeURIComponent(r)});})();
+/* Referral code (?ref=name) is remembered and passed to checkout.
+   Start free trial opens Stripe's embedded checkout in a pop-up on this page; if anything fails it falls back to the Stripe page. */
+(function(){
+  var ref=null;
+  try{ref=new URLSearchParams(location.search).get('ref');if(ref)localStorage.setItem('bt_ref',ref);else ref=localStorage.getItem('bt_ref');}catch(e){}
+  var links=[].slice.call(document.querySelectorAll('a[data-plan]'));
+  if(ref)links.forEach(function(a){a.href+=(a.href.indexOf('?')<0?'?':'&')+'ref='+encodeURIComponent(ref)});
+  var PK='pk_live_51UN0GwILp1R7Q4H2nVpWid9N3mJPWh2p4w6tC9sp3fbOlQvaBwYsLraDxePq9ega4SFOlKhsByvsxfSNxGJUsqBp00dxVWiGRw';
+  var stripeP=null, current=null;
+  function loadStripe(){ if(stripeP)return stripeP; stripeP=new Promise(function(res,rej){var sc=document.createElement('script');sc.src='https://js.stripe.com/v3/';sc.onload=function(){res(window.Stripe(PK))};sc.onerror=rej;document.head.appendChild(sc);}); return stripeP; }
+  var m=document.createElement('div'); m.id='bt-co';
+  m.innerHTML='<div class="bt-co-bg"></div><div class="bt-co-box" role="dialog" aria-modal="true" aria-label="Start your free trial"><button class="bt-co-x" aria-label="Close">&times;</button><div class="bt-co-load">Loading secure checkout…</div><div id="bt-co-mount"></div></div>';
+  document.body.appendChild(m);
+  function close(){ m.classList.remove('on'); document.body.style.overflow=''; if(current){try{current.destroy()}catch(e){} current=null;} }
+  m.querySelector('.bt-co-x').onclick=close; m.querySelector('.bt-co-bg').onclick=close;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+  links.forEach(function(a){ a.addEventListener('click',function(e){
+    if(e.metaKey||e.ctrlKey||e.shiftKey)return; e.preventDefault();
+    var plan=a.getAttribute('data-plan'), fallback=a.href;
+    m.classList.add('on'); m.querySelector('.bt-co-load').style.display='block'; document.body.style.overflow='hidden';
+    loadStripe().then(function(st){
+      return st.initEmbeddedCheckout({fetchClientSecret:function(){
+        return fetch('https://license.bidtag.app/session/'+plan+(ref?'?ref='+encodeURIComponent(ref):'')).then(function(r){return r.json()}).then(function(j){if(!j.clientSecret)throw new Error('no session');return j.clientSecret});
+      }});
+    }).then(function(co){ if(!m.classList.contains('on')){co.destroy();return;} current=co; m.querySelector('.bt-co-load').style.display='none'; co.mount('#bt-co-mount'); })
+    .catch(function(){ location.href=fallback; });
+  }); });
+})();
 </script>
 </body>
 </html>

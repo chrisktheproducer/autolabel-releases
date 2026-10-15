@@ -554,7 +554,7 @@ src="https://www.facebook.com/tr?id=27015298721502131&ev=PageView&noscript=1"
 <script>
 // Meta Pixel events: download clicks and Start free trial clicks
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a||!window.fbq)return;
-if(/BidTag-Setup\.exe|bidtag\.app\/dl/.test(a.href))fbq('track','Lead',{content_name:'Download'});
+if(/BidTag-Setup\.exe|bidtag\.app\/dl/.test(a.href)&&!window.btPhone)fbq('track','Lead',{content_name:'Download'});
 else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:a.dataset.plan==='pro'?'Pro':'Solo',value:a.dataset.plan==='pro'?24.99:14.99,currency:'USD'});});
 </script>
 <script>
@@ -586,6 +586,50 @@ else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:a.dataset.pl
     }).then(function(co){ if(!m.classList.contains('on')){co.destroy();return;} current=co; m.querySelector('.bt-co-load').style.display='none'; co.mount('#bt-co-mount'); })
     .catch(function(){ location.href=fallback; });
   }); });
+})();
+</script>
+<!-- Phone visitors can't run the Windows app: Download buttons open "email me the link" instead -->
+<style>
+#bt-ml{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.72);display:none;align-items:flex-end;justify-content:center}
+#bt-ml.on{display:flex}
+#bt-ml .box{background:#16191D;color:#F3F1EA;border:1px solid #2A2E36;border-radius:18px 18px 0 0;width:100%;max-width:520px;padding:22px 18px 26px;font-family:"DM Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+#bt-ml h3{margin:0 0 6px;font-size:22px;font-weight:900;font-family:Archivo,"DM Sans",Arial,sans-serif}
+#bt-ml p{margin:0 0 14px;color:#C9C6BD;font-size:15px;line-height:1.45}
+#bt-ml input{width:100%;box-sizing:border-box;font:inherit;font-size:17px;padding:14px;border-radius:12px;border:1px solid #3A3E46;background:#0E1013;color:#F3F1EA;margin-bottom:10px}
+#bt-ml button{width:100%;font:inherit;font-size:17px;font-weight:800;border:0;border-radius:12px;padding:15px;background:#FFD400;color:#0E1013;cursor:pointer}
+#bt-ml .x{background:none;color:#8E8B83;font-weight:600;font-size:15px;padding:12px 0 0}
+#bt-ml .err{color:#ff8a8a;font-size:14px;min-height:18px;margin:-4px 0 6px}
+#bt-ml .ok{display:none}
+</style>
+<div id="bt-ml" role="dialog" aria-modal="true" aria-labelledby="bt-ml-h"><div class="box">
+  <div class="form">
+    <h3 id="bt-ml-h">BidTag runs on your Windows PC</h3>
+    <p>You're on your phone, so we'll email you the download link. Open it on your computer when you're ready. Free 3-day trial, no card.</p>
+    <form><input type="email" required autocomplete="email" placeholder="you@email.com" aria-label="Email"><div class="err"></div><button type="submit">Email me the link</button></form>
+    <button class="x" type="button">Not now</button>
+  </div>
+  <div class="ok"><h3>Check your email &#128233;</h3><p>The link is on its way. Open it on your Windows computer and you'll be printing labels in about 2 minutes.</p><button class="x" type="button">Close</button></div>
+</div></div>
+<script>
+(function(){
+  var phone=/Android|iPhone|iPad|iPod|Mobile|Silk/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
+  if(!phone)return; window.btPhone=true;
+  var m=document.getElementById('bt-ml'),f=m.querySelector('form'),inp=f.querySelector('input'),err=m.querySelector('.err'),btn=f.querySelector('button');
+  var ref=null;try{ref=new URLSearchParams(location.search).get('ref')||localStorage.getItem('bt_ref')}catch(e){}
+  [].slice.call(document.querySelectorAll('a[href^="https://license.bidtag.app/dl"]')).forEach(function(a){
+    a.addEventListener('click',function(e){e.preventDefault();m.classList.add('on');m.querySelector('.form').style.display='';m.querySelector('.ok').style.display='none';setTimeout(function(){inp.focus()},50);});
+    a.innerHTML=a.innerHTML.replace(/Download for Windows/,'Get it for your PC').replace(/^Download$/,'Get it');
+  });
+  m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('x'))m.classList.remove('on');});
+  f.addEventListener('submit',function(e){e.preventDefault();err.textContent='';btn.disabled=true;btn.textContent='Sending…';
+    fetch('https://license.bidtag.app/send-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:inp.value,ref:ref||''})})
+    .then(function(r){return r.json()}).then(function(j){
+      if(!j.ok)throw new Error(j.error||'Something went wrong. Try again.');
+      m.querySelector('.form').style.display='none';m.querySelector('.ok').style.display='block';
+      if(window.fbq)fbq('track','Lead',{content_name:'Phone link'});
+    }).catch(function(x){err.textContent=x.message||'Something went wrong. Try again.';})
+    .then(function(){btn.disabled=false;btn.textContent='Email me the link';});
+  });
 })();
 </script>
 </body>

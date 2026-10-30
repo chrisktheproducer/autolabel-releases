@@ -558,6 +558,49 @@ src="https://www.facebook.com/tr?id=27015298721502131&ev=PageView&noscript=1"
   </footer>
 </div>
 
+<script>
+/* Visitor source tracking: remembers the first and latest visit (utm tags, ad click ids, referrer, landing page),
+   visit count, sections viewed and device, and sends it (?src=) with checkout, downloads and phone link requests.
+   license.bidtag.app saves it on the Stripe customer and in the signup email. */
+(function(){
+  var LS={g:function(k){try{return localStorage.getItem(k)}catch(e){return null}},s:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+  var q=new URLSearchParams(location.search),t={},now=new Date();
+  function host(u){try{return new URL(u).hostname.replace(/^www\./,'')}catch(e){return ''}}
+  ['source','medium','campaign','content','term','id'].forEach(function(k){var v=q.get('utm_'+k);if(v)t[k]=v.slice(0,120)});
+  var clk={fbclid:'facebook',gclid:'google',gbraid:'google',wbraid:'google',ttclid:'tiktok',msclkid:'bing',twclid:'x',li_fat_id:'linkedin',epik:'pinterest',rdt_cid:'reddit',ScCid:'snapchat',igshid:'instagram'};
+  for(var c in clk)if(q.get(c)){t.click=c;if(!t.source)t.source=clk[c];if(!t.medium)t.medium=c==='igshid'?'social':'paid';break;}
+  if(q.get('ref'))t.ref=q.get('ref').slice(0,60);
+  var r=host(document.referrer);if(/(^|\.)bidtag\.app$/.test(r))r='';
+  if(r){t.referrer=r;if(!t.source){var m=[[/google\./,'google','search'],[/bing\./,'bing','search'],[/duckduckgo/,'duckduckgo','search'],[/yahoo\./,'yahoo','search'],[/(facebook|fb)\.(com|me)/,'facebook','social'],[/instagram/,'instagram','social'],[/tiktok/,'tiktok','social'],[/youtu/,'youtube','social'],[/reddit/,'reddit','social'],[/whatnot/,'whatnot','referral'],[/(^t\.co$|twitter|x\.com)/,'x','social'],[/(chatgpt|openai|perplexity|claude\.ai|gemini|copilot)/,'ai','ai']];
+    for(var i=0;i<m.length;i++)if(m[i][0].test(r)){t.source=m[i][1];t.medium=t.medium||m[i][2];break;}
+    if(!t.source){t.source=r;t.medium=t.medium||'referral';}}}
+  var fresh=Object.keys(t).length>0;
+  if(!fresh)t.source='direct';
+  t.landing=(location.pathname+location.hash).slice(0,200);t.at=now.toISOString().slice(0,16);
+  var ft=null,lt=null;try{ft=JSON.parse(LS.g('bt_ft'))}catch(e){}try{lt=JSON.parse(LS.g('bt_lt'))}catch(e){}
+  if(!ft){ft=t;LS.s('bt_ft',JSON.stringify(t));}
+  if(fresh||!lt){lt=t;LS.s('bt_lt',JSON.stringify(t));}
+  var newSession=false;try{newSession=!sessionStorage.getItem('bt_s');sessionStorage.setItem('bt_s','1')}catch(e){}
+  var visits=+(LS.g('bt_v')||0);if(newSession||!visits){visits++;LS.s('bt_v',String(visits));}
+  var pages={};try{pages=JSON.parse(LS.g('bt_pg'))||{}}catch(e){}
+  if('IntersectionObserver' in window)addEventListener('DOMContentLoaded',function(){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&e.target.id&&e.target.id!=='top'&&!pages[e.target.id]){pages[e.target.id]=1;LS.s('bt_pg',JSON.stringify(pages));}})},{rootMargin:'-45% 0px -45% 0px'});
+    [].slice.call(document.querySelectorAll('section[id],[id=pricing],[id=faq],[id=setup],[id=demo]')).forEach(function(el){io.observe(el)});});
+  function ck(n){var m=document.cookie.match('(?:^|; )'+n+'=([^;]*)');return m?decodeURIComponent(m[1]):''}
+  var ua=navigator.userAgent;
+  var dev={dev:/iPad|Tablet/i.test(ua)||(navigator.maxTouchPoints>1&&/Macintosh/.test(ua))?'tablet':/Mobi|Android|iPhone/i.test(ua)?'phone':'desktop',
+    os:/Windows NT 10/.test(ua)?'Windows 10/11':/Windows/.test(ua)?'Windows (old)':/iPhone|iPad|iPod/.test(ua)?'iOS':/Android/.test(ua)?'Android':/Mac OS X/.test(ua)?'Mac':/CrOS/.test(ua)?'ChromeOS':/Linux/.test(ua)?'Linux':'other',
+    br:/Edg\//.test(ua)?'Edge':/OPR\//.test(ua)?'Opera':/SamsungBrowser/.test(ua)?'Samsung':/FBAN|FBAV/.test(ua)?'Facebook app':/Instagram/.test(ua)?'Instagram app':/TikTok|musical_ly/i.test(ua)?'TikTok app':/Chrome\//.test(ua)?'Chrome':/Firefox\//.test(ua)?'Firefox':/Safari\//.test(ua)?'Safari':'other',
+    lang:navigator.language||'',tz:(Intl.DateTimeFormat().resolvedOptions().timeZone)||'',scr:screen.width+'x'+screen.height};
+  window.btSrc=function(){
+    var first=ft&&ft.at?new Date(ft.at+'Z'):now,o={ft:ft,lt:lt,d:Object.assign({},dev,{visits:visits,days:Math.max(1,Math.round((Date.now()-first)/864e5)+1),pages:Object.keys(pages).join(',').slice(0,120),fbc:ck('_fbc'),fbp:ck('_fbp')})};
+    try{return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}catch(e){return ''}
+  };
+  window.btAddSrc=function(u){var s=window.btSrc();return s?u+(u.indexOf('?')<0?'?':'&')+'src='+s:u};
+  // every Download link carries the source at click time
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="https://license.bidtag.app/dl"]');if(a&&!window.btPhone)a.href=window.btAddSrc(a.href.replace(/[?&]src=[^&]*/,''));},true);
+})();
+</script>
 <script>function btOpen(){var e=location.hash&&document.querySelector(location.hash);if(e&&e.tagName==='DETAILS'){e.open=true;e.scrollIntoView();}}addEventListener('hashchange',btOpen);btOpen();</script>
 <script>
 // Meta Pixel events: download clicks and Start free trial clicks
@@ -585,11 +628,11 @@ else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:{solo:'Solo'
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
   links.forEach(function(a){ a.addEventListener('click',function(e){
     if(e.metaKey||e.ctrlKey||e.shiftKey)return; e.preventDefault();
-    var plan=a.getAttribute('data-plan'), fallback=a.href;
+    var plan=a.getAttribute('data-plan'), fallback=window.btAddSrc(a.href);
     m.classList.add('on'); m.querySelector('.bt-co-load').style.display='block'; document.body.style.overflow='hidden';
     loadStripe().then(function(st){
       return st.initEmbeddedCheckout({fetchClientSecret:function(){
-        return fetch('https://license.bidtag.app/session/'+plan+(ref?'?ref='+encodeURIComponent(ref):'')).then(function(r){return r.json()}).then(function(j){if(!j.clientSecret)throw new Error('no session');return j.clientSecret});
+        return fetch(window.btAddSrc('https://license.bidtag.app/session/'+plan+(ref?'?ref='+encodeURIComponent(ref):''))).then(function(r){return r.json()}).then(function(j){if(!j.clientSecret)throw new Error('no session');return j.clientSecret});
       }});
     }).then(function(co){ if(!m.classList.contains('on')){co.destroy();return;} current=co; m.querySelector('.bt-co-load').style.display='none'; co.mount('#bt-co-mount'); })
     .catch(function(){ location.href=fallback; });
@@ -630,7 +673,7 @@ else if(a.dataset.plan)fbq('track','InitiateCheckout',{content_name:{solo:'Solo'
   });
   m.addEventListener('click',function(e){if(e.target===m||e.target.classList.contains('x'))m.classList.remove('on');});
   f.addEventListener('submit',function(e){e.preventDefault();err.textContent='';btn.disabled=true;btn.textContent='Sending…';
-    fetch('https://license.bidtag.app/send-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:inp.value,ref:ref||''})})
+    fetch('https://license.bidtag.app/send-link',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:inp.value,ref:ref||'',src:window.btSrc?window.btSrc():''})})
     .then(function(r){return r.json()}).then(function(j){
       if(!j.ok)throw new Error(j.error||'Something went wrong. Try again.');
       m.querySelector('.form').style.display='none';m.querySelector('.ok').style.display='block';
